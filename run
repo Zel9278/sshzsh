@@ -1,3 +1,12 @@
 #!/bin/bash
 
+useradd -m -p `perl -e "print(crypt('$2', 'a9'));"` -s /bin/bash $1
+chsh -s /bin/zsh $1
+if [ "$3" = "1" ]; then
+    usermod -aG sudo $1;
+fi
 
+su - $1 -c "sh -c $(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+su - $1 -c "cp /usr/local/share/.zshrc ./"
+
+/usr/sbin/sshd -D
