@@ -12,7 +12,8 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install openssh-server -y
 RUN mkdir /var/run/sshd
 
-RUN apt-get install sudo vim zsh git wget curl -y
+RUN apt-get install sudo vim zsh git wget curl command-not-found pulseaudio -y
+RUN apt-get install xorg wmaker xrdp lxtask dbus fuse xterm pavucontrol -y
 
 COPY run /usr/local/bin/.run
 RUN chmod +x /usr/local/bin/.run
@@ -20,4 +21,5 @@ RUN chmod +x /usr/local/bin/.run
 COPY .zshrc /usr/local/share/.zshrc
 
 EXPOSE 22
+EXPOSE 3389
 CMD /usr/local/bin/.run ${USERNAME} ${PASSWORD} ${USE_SUDO}
