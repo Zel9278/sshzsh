@@ -15,13 +15,6 @@ RUN mkdir /var/run/sshd
 RUN apt-get install sudo vim zsh git wget curl -y
 RUN apt-get install xorg wmaker xrdp lxtask dbus fuse xterm pavucontrol -y
 
-RUN sed -i -- "s/#deb-src/deb-src/g" /etc/apt/sources.list && sed -i -- "s/# deb-src/deb-src/g" /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get install build-essential dpkg-dev libpulse-dev -y
-RUN cd /tmp && apt-get source pulseaudio && apt-get build-dep pulseaudio -y && cd pulseaudio-13.99.1 && dpkg-buildpackage -rfakeroot -uc -b \
-    && cd .. && git clone https://github.com/neutrinolabs/pulseaudio-module-xrdp.git && cd pulseaudio-module-xrdp && ./bootstrap && ./configure PULSE_DIR=pulseaudio-13.99.1 \
-    && make
-
 COPY run /usr/local/bin/.run
 RUN chmod +x /usr/local/bin/.run
 
@@ -30,3 +23,10 @@ COPY .zshrc /usr/local/share/.zshrc
 EXPOSE 22
 EXPOSE 3389
 CMD /usr/local/bin/.run ${USERNAME} ${PASSWORD} ${USE_SUDO}
+
+# RUN sed -i -- "s/#deb-src/deb-src/g" /etc/apt/sources.list && sed -i -- "s/# deb-src/deb-src/g" /etc/apt/sources.list
+# RUN apt-get update
+# RUN apt-get install build-essential dpkg-dev libpulse-dev -y
+# RUN cd /tmp && apt-get source pulseaudio && apt-get build-dep pulseaudio -y && cd pulseaudio-13.99.1 && dpkg-buildpackage -rfakeroot -uc -b \
+#    && cd .. && git clone https://github.com/neutrinolabs/pulseaudio-module-xrdp.git && cd pulseaudio-module-xrdp && ./bootstrap && ./configure PULSE_DIR=/tmp/pulseaudio-13.99.1 \
+#    && make && cd /

@@ -25,5 +25,5 @@ service xrdp start
 echo "running pulseaudio..."
 pulseaudio -D
 
-echo "running sshd and xrdp daemon..."
+echo "running sshd daemon..."
 /usr/sbin/sshd -D
