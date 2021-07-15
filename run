@@ -18,12 +18,12 @@ su - $1 -c "wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/to
 su - $1 -c "cp /usr/local/share/.zshrc ./"
 su - $1 -c "echo 'wmaker' > .xsession"
 
+echo "running pulseaudio..."
+su - $1 -c "pulseaudio -L module-xrdp-source -L module-xrdp-sink -D"
+
 echo "running dbus and xrdp daemon..."
 service dbus start
 service xrdp start
-
-echo "running pulseaudio..."
-su - $1 -c "pulseaudio -D"
 
 echo "running sshd daemon..."
 /usr/sbin/sshd -D
