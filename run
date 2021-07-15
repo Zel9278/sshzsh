@@ -23,7 +23,7 @@ service dbus start
 service xrdp start
 
 echo "running pulseaudio..."
-pulseaudio -D
+su - $1 -c "pulseaudio -D"
 
 echo "running sshd daemon..."
 /usr/sbin/sshd -D
