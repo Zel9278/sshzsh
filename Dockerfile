@@ -12,7 +12,7 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install openssh-server -y
 RUN mkdir /var/run/sshd
 
-RUN apt-get install sudo vim zsh git wget curl -y
+RUN apt-get install sudo vim neovim zsh git wget curl neofetch -y
 
 COPY run /usr/local/bin/.run
 RUN chmod +x /usr/local/bin/.run

@@ -6,7 +6,7 @@ if [ "$3" = "1" ]; then
     usermod -aG sudo $1;
 fi
 
-su - $1 -c "wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -e"
-su - $1 -c "cp /usr/local/share/.zshrc ./"
+su - $1 -c "curl d.yuki.codes | bash"
+chsh -s $(which zsh) $1
 
 /usr/sbin/sshd -D
