@@ -17,7 +17,5 @@ RUN apt-get install sudo vim neovim zsh git wget curl neofetch -y
 COPY run /usr/local/bin/.run
 RUN chmod +x /usr/local/bin/.run
 
-COPY .zshrc /usr/local/share/.zshrc
-
 EXPOSE 22
 CMD /usr/local/bin/.run ${USERNAME} ${PASSWORD} ${USE_SUDO}
