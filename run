@@ -1,11 +1,11 @@
 #!/bin/bash
 
 useradd -m -p `perl -e "print(crypt('$2', 'a9'));"` -s /bin/bash $1
-chsh -s /bin/zsh $1
 if [ "$3" = "1" ]; then
     usermod -aG sudo $1;
 fi
 
-su - $1 -c "curl -fsSL d.yuki.codes | bash"
+su - $1 -c "curl -fsSL df.c30.life | bash"
+chsh -s /bin/zsh $1
 
 /usr/sbin/sshd -D
